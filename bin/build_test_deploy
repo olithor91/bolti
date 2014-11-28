@@ -1,0 +1,5 @@
+#!/bin/bash
+
+./gradlew build
+sudo mv /home/oli/ticTacToeGame/build/libs/ticTacToeGame.jar /home/ubuntu/deployedGame || sudo mv /home/elli/ticTacToeGame/build/libs/ticTacToeGame.jar /home/ubuntu/deployedGame || sudo mv /home/sjonni/ticTacToeGame/build/libs/ticTacToeGame.jar /home/ubuntu/deployedGame || sudo mv /home/ragnar/ragnar/ticTacToeGame/build/libs/ticTacToeGame.jar /home/ubuntu/deployedGame || sudo mv /home/ottar/temp/ticTacToeGame/build/libs/ticTacToeGame.jar /home/ubuntu/deployedGame 
+./gradlew clean

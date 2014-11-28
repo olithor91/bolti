@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tic Tac Toe!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <style type="text/css">
+    
+
+    td{
+      font-size: 100px;
+      width: 150;
+      height: 150px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    #game{
+      margin-top: -1px;
+      margin-bottom: 69px;
+      margin-left: 527px;
+
+    }
+
+   
+    .bottom{
+      border-left:4px solid black;
+      border-right:4px solid black;
+    } 
+
+    .sides{
+        border-top:4px solid black;
+        border-bottom:4px solid black;
+    }
+
+    .middle{
+      border-left:4px solid black;
+      border-right:4px solid black;
+      border-top:4px solid black;
+      border-bottom:4px solid black;
+    }
+
+   .btn{
+      border: none;
+      background: transparent;
+      vertical-align:middle;
+      outline: none;
+      font-size: 100%;
+      font-family: Papyrus, fantasy;
+      height:150px;
+      width:150px;
+   }
+  
+  body{
+    font-family: Papyrus, fantasy;
+
+  }
+  h1{
+    text-align:center;
+  }
+
+  .foot{
+    text-align: center;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    }
+
+
+    </style>
+  </head>
+  <body>
+    <h1>Tic Tac Toe</h1>
+
+
+    <form method="post" action="/move" class="form-inline" role="form">
+      <div id="game"> 
+        <table>
+            <thead></thead>
+            <tr>
+              <td ><input id="one" class="btn" type= "button" value="" onclick="markbox(this, 1)"></td>
+              <td class="bottom"><input id="two" class="btn" type= "button" value="" onclick="markbox(this, 2)"></td>
+              <td ><input id="three" class="btn" type= "button" value="" onclick="markbox(this, 3)"></td>
+            </tr>
+            <tr>
+              <td class="sides"><input id="four" class="btn" type= "button" value="" onclick="markbox(this, 4)"></td>
+              <td class="middle"><input id="five" class="btn" type= "button" value="" onclick="markbox(this, 5)"></td>
+              <td class="sides"><input id="six" class="btn" type= "button" value="" onclick="markbox(this, 6)"></td>
+            </tr>
+            <tr>
+              <td ><input id="seven" class="btn" type= "button" value="" onclick="markbox(this, 7)"></td>
+              <td class="bottom"><input id="eight" class="btn" type= "button" value="" onclick="markbox(this, 8)"></td>
+              <td ><input id="nine" class="btn" type= "button" value="" onclick="markbox(this, 9)"></td>
+          </tr>
+        </table>  
+      </div>
+    </form>
+
+    <div class="foot">© 2014 -TicTacToe-. All rights reserved. Design © -LeChamp-.</div>
+    
+    
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+    var cell;
+    var symbol = "X";
+    function markbox(cell, e){
+      if (cell.value == ""){
+        cell.value=symbol;
+        $.get("move", {e: e}, function( data ) {
+          var json = JSON.parse(data);
+          if(json.whosturn == false){
+            symbol = "O";
+          }
+          else{ 
+            symbol = "X";
+          }
+          if (json.haswon == true) {
+            if(symbol=="X"){
+              alert("Player 2 wins");
+            }
+
+            else if(symbol == "O"){
+              alert("Player 1 wins")
+          }
+          location.reload();
+          }
+          else if(json.isfull == true){
+            alert("It's a tie");
+            location.reload();
+          }
+        })  
+      }
+      else {
+        alert("Can't make this move!");
+      }
+    }
+
+    $(document).ready(function() {
+      $.get("newgame", function(dt){
+      });
+    });
+
+    </script>
+  </body>
+</html>
