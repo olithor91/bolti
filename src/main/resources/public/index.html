@@ -34,7 +34,7 @@
 					<li class="player"><input type="checkbox" value="Gestaspilar2">Gestaspilari 2<br></li>
 					<li class="player"><input type="checkbox" value="Gestaspilar3">Gestaspilari 3<br></li>
 				</ul>
-				<input class="myButton" type="button" value="Skipta í lið"/>
+				<input class="myButton" type="button" value="Skipta í lið" onclick="maketeam()"/>
 			</div>
 
 			<div class="twoTeams">
@@ -70,6 +70,56 @@
 				</table>
 			</div>
 		</div>
+
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	    <script type="text/javascript">
+	    var cell;
+	    var symbol = "X";
+	    function maketeams(){
+	      if (cell.value == ""){
+	        cell.value=symbol;
+
+	        var e = $('input:checkbox:checked').map(function() {
+    			return this.value;
+			}).get();
+
+	        $.get("move", {e: e}, function( data ) {
+	          var json = JSON.parse(data);
+	          // if(json.whosturn == false){
+	          //   symbol = "O";
+	          // }
+	          // else{ 
+	          //   symbol = "X";
+	          // }
+	          // if (json.haswon == true) {
+	          //   if(symbol=="X"){
+	          //     alert("Player 2 wins");
+	          //   }
+
+	          //   else if(symbol == "O"){
+	          //     alert("Player 1 wins")
+	          // }
+	          // location.reload();
+	          // }
+	          // else if(json.isfull == true){
+	          //   alert("It's a tie");
+	          //   location.reload();
+	          // }
+	        })  
+	      }
+	      else {
+	        alert("Can't make this move!");
+	      }
+	    }
+
+	    $(document).ready(function() {
+	      $.get("newgame", function(dt){
+	      });
+	    });
+
+	    </script>
 
 	</body>
 </html>
