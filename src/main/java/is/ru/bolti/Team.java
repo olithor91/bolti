@@ -1,5 +1,6 @@
 package is.ru.bolti;
-
+import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class Team {
@@ -15,6 +16,14 @@ public class Team {
 	
 	public void addPlayer(String player){
 		team.add(player);
+	}
+
+	public String get(int i){
+		return team.get(i);
+	}
+
+	public int size(){
+		return team.size();
 	}
 	
 	public void clearTeam(){

@@ -1,146 +1,124 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Tic Tac Toe!</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-    <style type="text/css">
-    
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="myCSS.css"></link>
+		<title>Project 1</title>
+	</head>
+	<body>
+		<div class="header">
+			<img class="imglogo" src="logo.png" alt="ru-logo" height="100" width="100"></img>
+			<h1>Bolti fyrir Legend</h1>
+		</div>
+		<div>
+			<div class="teams">
+				<ul class="players">
+					<li class="player"><input type="checkbox" value="Oli">Óli Þór<br></li>
+					<li class="player"><input type="checkbox" value="Freyr">Freyr<br></li>
+					<li class="player"><input type="checkbox" value="Elvar">Elvar<br></li>
+					<li class="player"><input type="checkbox" value="Hilmar">Hilmarr<br></li>
+					<li class="player"><input type="checkbox" value="Eythor">Eyþór<br></li>
+					<li class="player"><input type="checkbox" value="Egill">Egill<br></li>
+					<li class="player"><input type="checkbox" value="Þorsteinn">Þorsteinn<br></li>
+					<li class="player"><input type="checkbox" value="Valur">Valur<br></li>
+					<li class="player"><input type="checkbox" value="Sindri">Sindri<br></li>
+					<li class="player"><input type="checkbox" value="Pall">Páll<br></li>
+					<li class="player"><input type="checkbox" value="Gudni">Guðni<br></li>
+					<li class="player"><input type="checkbox" value="Gunnar">Gunnarr<br></li>
+					<li class="player"><input type="checkbox" value="OliB">Ólafur B.<br></li>
+					<li class="player"><input type="checkbox" value="Sigmar">Sigmar<br></li>
+					<li class="player"><input type="checkbox" value="Haukur">Haukur<br></li>
+					<li class="player"><input type="checkbox" value="Bessi">Bessi<br></li>
+					<li class="player"><input type="checkbox" value="Johnny">Johnny<br></li>
+					<li class="player"><input type="checkbox" value="Gestaspilar1">Gestaspilari 1<br></li>
+					<li class="player"><input type="checkbox" value="Gestaspilar2">Gestaspilari 2<br></li>
+					<li class="player"><input type="checkbox" value="Gestaspilar3">Gestaspilari 3<br></li>
+				</ul>
+				<input class="myButton" type="button" value="Skipta í lið" onclick="maketeams()"/>
+			</div>
 
-    td{
-      font-size: 100px;
-      width: 150;
-      height: 150px;
-      text-align: center;
-      vertical-align: middle;
-    }
+			<div class="twoTeams">
+				<p class="teamname">Lið 1</p>
+				<p class="team1"></p>
+				<p class="teamname">Lið 2</p>
+				<p class="team2"></p>
 
-    #game{
-      margin-top: -1px;
-      margin-bottom: 69px;
-      margin-left: 527px;
+			</div>
 
-    }
-
-   
-    .bottom{
-      border-left:4px solid black;
-      border-right:4px solid black;
-    } 
-
-    .sides{
-        border-top:4px solid black;
-        border-bottom:4px solid black;
-    }
-
-    .middle{
-      border-left:4px solid black;
-      border-right:4px solid black;
-      border-top:4px solid black;
-      border-bottom:4px solid black;
-    }
-
-   .btn{
-      border: none;
-      background: transparent;
-      vertical-align:middle;
-      outline: none;
-      font-size: 100%;
-      font-family: Papyrus, fantasy;
-      height:150px;
-      width:150px;
-   }
-  
-  body{
-    font-family: Papyrus, fantasy;
-
-  }
-  h1{
-    text-align:center;
-  }
-
-  .foot{
-    text-align: center;
-    margin-top: 1%;
-    margin-bottom: 1%;
-    }
+			<div class="scoreboard">
+				<table>
+					<thead>
+						<tr>
+							<th>Leikmaður</th>
+							<th>Leikir</th>
+							<th>(Sigrar)</th>
+							<th>Sigrar</th>
+							<th>Jafntefli</th>
+							<th>Sekt</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Óli Þór Arnarson</td>
+							<td>4</td>
+							<td>2</td>
+							<td>1</td>
+							<td>0</td>
+							<td>2000 kr</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
 
-    </style>
-  </head>
-  <body>
-    <h1>Tic Tac Toe</h1>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	    <script type="text/javascript">
+	    var cell;
+	    var symbol = "X";
+	    function maketeams(){
+
+	        var e = $('input:checkbox:checked').map(function() {
+    			return this.value;
+			}).get();
+			alert(e);
+			e=String(e);
+	        $.get("move", {e: e}, function( data ) {
+	          var json = JSON.parse(data);
+	          // if(json.whosturn == false){
+	          //   symbol = "O";
+	          // }
+	          // else{ 
+	          //   symbol = "X";
+	          // }
+	          // if (json.haswon == true) {
+	          //   if(symbol=="X"){
+	          //     alert("Player 2 wins");
+	          //   }
+
+	          //   else if(symbol == "O"){
+	          //     alert("Player 1 wins")
+	          // }
+	          // location.reload();
+	          // }
+	          // else if(json.isfull == true){
+	          //   alert("It's a tie");
+	          //   location.reload();
+	          // }
+	        })  
 
 
-    <form method="post" action="/move" class="form-inline" role="form">
-      <div id="game"> 
-        <table>
-            <thead></thead>
-            <tr>
-              <td ><input id="one" class="btn" type= "button" value="" onclick="markbox(this, 1)"></td>
-              <td class="bottom"><input id="two" class="btn" type= "button" value="" onclick="markbox(this, 2)"></td>
-              <td ><input id="three" class="btn" type= "button" value="" onclick="markbox(this, 3)"></td>
-            </tr>
-            <tr>
-              <td class="sides"><input id="four" class="btn" type= "button" value="" onclick="markbox(this, 4)"></td>
-              <td class="middle"><input id="five" class="btn" type= "button" value="" onclick="markbox(this, 5)"></td>
-              <td class="sides"><input id="six" class="btn" type= "button" value="" onclick="markbox(this, 6)"></td>
-            </tr>
-            <tr>
-              <td ><input id="seven" class="btn" type= "button" value="" onclick="markbox(this, 7)"></td>
-              <td class="bottom"><input id="eight" class="btn" type= "button" value="" onclick="markbox(this, 8)"></td>
-              <td ><input id="nine" class="btn" type= "button" value="" onclick="markbox(this, 9)"></td>
-          </tr>
-        </table>  
-      </div>
-    </form>
+	    }
 
-    <div class="foot">© 2014 -TicTacToe-. All rights reserved. Design © -LeChamp-.</div>
-    
-    
-   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	    $(document).ready(function() {
+	      $.get("newgame", function(dt){
+	      });
+	    });
 
-    <script type="text/javascript">
-    var cell;
-    var symbol = "X";
-    function markbox(cell, e){
-      if (cell.value == ""){
-        cell.value=symbol;
-        $.get("move", {e: e}, function( data ) {
-          var json = JSON.parse(data);
-          if(json.whosturn == false){
-            symbol = "O";
-          }
-          else{ 
-            symbol = "X";
-          }
-          if (json.haswon == true) {
-            if(symbol=="X"){
-              alert("Player 2 wins");
-            }
+	    </script>
 
-            else if(symbol == "O"){
-              alert("Player 1 wins")
-          }
-          location.reload();
-          }
-          else if(json.isfull == true){
-            alert("It's a tie");
-            location.reload();
-          }
-        })  
-      }
-      else {
-        alert("Can't make this move!");
-      }
-    }
-
-    $(document).ready(function() {
-      $.get("newgame", function(dt){
-      });
-    });
-
-    </script>
-  </body>
+	</body>
 </html>
+
+<!--Tested in Firefox and Chrome!-->

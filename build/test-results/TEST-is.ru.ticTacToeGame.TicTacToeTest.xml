@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="is.ru.ticTacToeGame.TicTacToeTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2014-11-04T13:30:26" hostname="Alienware" time="0.001">
+<testsuite name="is.ru.ticTacToeGame.TicTacToeTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2014-11-28T20:20:27" hostname="Alienware" time="0.001">
   <properties/>
   <testcase name="testIsSeatTaken" classname="is.ru.ticTacToeGame.TicTacToeTest" time="0.0"/>
   <testcase name="testisFull" classname="is.ru.ticTacToeGame.TicTacToeTest" time="0.0"/>
